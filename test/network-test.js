@@ -5,7 +5,10 @@
         setup: function () {
             xhr = sinon.useFakeXMLHttpRequest();
             requests = [];
-            xhr.onCreate = function (req) { requests.push(req); };
+            xhr.onCreate = function (req) {
+                requests.push(req);
+                stop();
+            };
 
             network = new $ns.Network("abc123");
         },
@@ -19,12 +22,14 @@
     });
 
     test(".xhr", function () {
+        start();
         deepEqual(network.xhr(), new xhr());
     });
 
     test(".send", function () {
+        start();
         network.send({a: "abc123", n: 123});
         equal(requests.length, 1);
         ok(requests[0].url.match(network.trackEndpoint() + "$"));
     });
-}(s7tr));
+}(slash7));

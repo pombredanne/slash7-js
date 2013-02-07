@@ -242,4 +242,4 @@ global.Base64 = {
     }
 };
 
-}(this, "s7tr"));
+}(this, "slash7"));

@@ -491,4 +491,4 @@
             throw new SyntaxError('JSON.parse');
         };
     }
-}(this, "s7tr"));
+}(this, "slash7"));

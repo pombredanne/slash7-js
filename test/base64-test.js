@@ -12,4 +12,4 @@
         equal(encoded, "YWJjZGU")
         equal($ns.Base64.decode(encoded), "abcde")
     });
-}(s7tr));
+}(slash7));
