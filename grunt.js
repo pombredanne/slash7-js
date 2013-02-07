@@ -1,6 +1,6 @@
 /*global module:false*/
 module.exports = function(grunt) {
-
+  grunt.loadNpmTasks('grunt-contrib');
   // Project configuration.
   grunt.initConfig({
     qunit: {
@@ -24,18 +24,25 @@ module.exports = function(grunt) {
       codegen: {quote_keys: true}
     },
     watch: {
-      files: 'lib/**/*.ts',
-      tasks: 'typescript qunit'
+      files: ['lib/**/*', 'test/*'],
+      tasks: 'copy typescript concat min qunit'
     },
     typescript: {
       base: {
         src: ["lib/**/*.ts"],
         dest: "target/"
       }
+    },
+    copy: {
+      main: {
+        files: [
+	  {src: ['lib/**/*.js'], dest: 'target/lib/'}
+	]
+      }
     }
   });
 
   // Default task.
-  grunt.registerTask('default', 'typescript qunit concat min');
+  grunt.registerTask('default', 'copy typescript concat min qunit');
   grunt.loadNpmTasks("grunt-typescript");
 };

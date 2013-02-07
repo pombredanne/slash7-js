@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "grunt-typescript": ">= 0.0.8"
+    "grunt-typescript": ">= 0.0.8",
+    "grunt-contrib": ">= 0.3.0"
   }
 }
