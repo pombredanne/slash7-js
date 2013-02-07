@@ -27,9 +27,10 @@
     });
 
     test(".send", function () {
+        var stub = sinon.stub(network, "getImage");
         start();
         network.send({a: "abc123", n: 123});
         equal(requests.length, 1);
-        ok(requests[0].url.match(network.trackEndpoint() + "$"));
+        stub.restore();
     });
 }(slash7));
