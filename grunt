@@ -1,4 +1,4 @@
 #!/bin/bash
 set -e
 npm install
-exec node_modules/grunt-typescript/node_modules/.bin/grunt "$@"
+exec node_modules/.bin/grunt "$@"

@@ -1,9 +1,7 @@
 {
-  "name": "tracker-js",
+  "name": "tracker",
   "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "grunt-typescript": ">= 0.0.8",
-    "grunt-contrib": ">= 0.3.0"
+  "devDependencies": {
+    "grunt": ">= 0.3.17"
   }
 }

@@ -1,14 +1,20 @@
 /*global module:false*/
 module.exports = function(grunt) {
-  grunt.loadNpmTasks('grunt-contrib');
+
   // Project configuration.
   grunt.initConfig({
+    pkg: '<json:package.json>',
+    meta: {
+    },
+    lint: {
+      files: ['grunt.js', 'lib/**/*.js']
+    },
     qunit: {
       files: ['test/**/*.html']
     },
     concat: {
       dist: {
-        src: ["target/**/*.js"],
+        src: ['lib/**/*.js', 'third-party/**/*.js'],
         dest: 'dist/tracker.js'
       }
     },
@@ -18,31 +24,29 @@ module.exports = function(grunt) {
         dest: 'dist/tracker.min.js'
       }
     },
-    uglify: {
-      mangle: {toplevel: true},
-      squeeze: {dead_code: true},
-      codegen: {quote_keys: true}
-    },
     watch: {
-      files: ['lib/**/*', 'test/*'],
-      tasks: 'copy typescript concat min qunit'
+      files: '<config:lint.files>',
+      tasks: 'lint concat qunit'
     },
-    typescript: {
-      base: {
-        src: ["lib/**/*.ts"],
-        dest: "target/"
+    jshint: {
+      options: {
+        curly: true,
+        eqeqeq: true,
+        immed: true,
+        latedef: true,
+        newcap: true,
+        noarg: true,
+        sub: true,
+        undef: true,
+        boss: true,
+        eqnull: true,
+        browser: true
       }
     },
-    copy: {
-      main: {
-        files: [
-	  {src: ['lib/**/*.js'], dest: 'target/lib/'}
-	]
-      }
-    }
+    uglify: {}
   });
 
   // Default task.
-  grunt.registerTask('default', 'copy typescript concat min qunit');
-  grunt.loadNpmTasks("grunt-typescript");
+  grunt.registerTask('default', 'lint concat qunit min');
+
 };
