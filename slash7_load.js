@@ -1,6 +1,6 @@
+// compress with http://closure-compiler.appspot.com/home , optimization level Simple
 var slash7 = slash7 || [];
-
-slash7.load = function() {
+(function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
     script.async = true;
@@ -17,5 +17,4 @@ slash7.load = function() {
     for (var i = 0; i < methods.length; i++) {
         slash7[methods[i]] = methodFactory(methods[i]);
     }
-};
-slash7.load();
+}());
