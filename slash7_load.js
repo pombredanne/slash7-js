@@ -1,11 +1,11 @@
-// compress with http://closure-compiler.appspot.com/home , optimization level Simple
+// compress with http://closure-compiler.appspot.com/ , optimization level Simple
 var slash7 = slash7 || [];
 (function() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
     script.async = true;
     script.src = ('https:' === document.location.protocol ? 'https' : 'http') +
-        '://cdn.slash-7.com/v1/tracker.min.js';
+        '://d9nbmxmbhbtmj.cloudfront.net/v1/tracker.min.js';
     var firstScript = document.getElementsByTagName('script')[0];
     firstScript.parentNode.insertBefore(script, firstScript);
     var methodFactory = function (type) {
