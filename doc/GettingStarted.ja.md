@@ -50,12 +50,13 @@ slash7.identify("user012345");
 指定されたユーザ属性は、次のイベント送信時にサーバへ送付されます。
 イベントを送付しなかった場合、指定したユーザ属性は失われるので注意してください。
 
-例えば userAgent, platform をユーザ属性として指定するには以下のようにします。
+例えば userAgent, platform をユーザ属性として指定し、イベントを送付するには以下のようにします。
 
 ````
 slash7.register({
     userAgent: window.navigator.userAgent,
     platform: window.navigator.platform
 });
+slash7.track("page_load");
 ````
 
