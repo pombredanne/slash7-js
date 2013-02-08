@@ -41,5 +41,10 @@
         deepEqual(u.unsentUserAttribute, {});
     })
 
-
+    test("identify", function () {
+        var u = slash7.User.get();
+        u.identify("user0123");
+        equal(u.uidType, "app");
+        equal(u.uid, "user0123");
+    });
 }());
