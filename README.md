@@ -1,5 +1,7 @@
 # Tracker JS
 
+[![Build Status](https://travis-ci.org/pLucky-Inc/tracker-js.png)](https://travis-ci.org/pLucky-Inc/tracker-js)
+
 tracker-server の JavaScript client。
 
 # How to start hacking
