@@ -2,7 +2,7 @@
     module("User");
 
     test("fromCookieString", function () {
-        var u = slash7.User.fromCookieString("web.abc.123");
+        var u = slash7.User.fromCookieString("1.web.abc.123");
         equal(u.uidType, "web");
         equal(u.uid, "abc");
         equal(u.visitCount, 123);
@@ -10,7 +10,7 @@
 
     test("cookieString", function () {
         var u = new slash7.User("web", "abc", 123);
-        equal(u.cookieString(), "web.abc.123");
+        equal(u.cookieString(), "1.web.abc.123");
     });
 
     test("get new", function () {
@@ -22,7 +22,7 @@
     });
 
     test("get cookie", function () {
-        var stub = sinon.stub(slash7.Cookie, "get").returns("web.abc.123");
+        var stub = sinon.stub(slash7.Cookie, "get").returns("1.web.abc.123");
         var u = slash7.User.get();
         equal(u.uid, "abc");
         equal(u.visitCount, 123);
