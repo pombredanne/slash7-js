@@ -6,8 +6,7 @@
 `slash7.init()` にはあなたのプロジェクト用に発行された tracking code を渡してください。
 
 ````
-var slash7=slash7||[];
-(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===document.location.protocol?"https":"http")+"://d9nbmxmbhbtmj.cloudfront.net/v1/tracker.min.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b);for(var a=function(a){return function(){slash7.push([a].concat(Array.prototype.slice.call(arguments,0)))}},b=["init","identify","track","setUserAttribute","register"],c=0;c<b.length;c++)slash7[b[c]]=a(b[c])})();
+var slash7=slash7||[];(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===document.location.protocol?"https":"http")+"://d9nbmxmbhbtmj.cloudfront.net/v1/tracker.min.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b);for(var a=function(a){return function(){slash7.push([a].concat(Array.prototype.slice.call(arguments,0)))}},b=["init","identify","track","setUserAttribute","register"],c=0;c<b.length;c++)slash7[b[c]]=a(b[c])})();
 slash7.init("[YOUR TRACKING CODE]");
 ````
 
