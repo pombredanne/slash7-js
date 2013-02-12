@@ -3,4 +3,4 @@
 
 set -e
 ./grunt
-s3cmd put -P dist/tracker{,.min}.js s3://slash-7-cdn/v1/
+s3cmd put -P dist/slash7{,.min}.js s3://slash-7-cdn/v1/

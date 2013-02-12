@@ -15,13 +15,13 @@ module.exports = function(grunt) {
     concat: {
       dist: {
         src: ['lib/**/*.js', 'third-party/**/*.js'],
-        dest: 'dist/tracker.js'
+        dest: 'dist/slash7.js'
       }
     },
     min: {
       dist: {
         src: ['<config:concat.dist.dest>'],
-        dest: 'dist/tracker.min.js'
+        dest: 'dist/slash7.min.js'
       }
     },
     watch: {

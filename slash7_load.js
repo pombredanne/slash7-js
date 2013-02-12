@@ -5,7 +5,7 @@ var slash7 = slash7 || [];
     script.type = 'text/javascript';
     script.async = true;
     script.src = ('https:' === document.location.protocol ? 'https' : 'http') +
-        '://d9nbmxmbhbtmj.cloudfront.net/v1/tracker.min.js';
+        '://d9nbmxmbhbtmj.cloudfront.net/v1/slash7.min.js';
     var firstScript = document.getElementsByTagName('script')[0];
     firstScript.parentNode.insertBefore(script, firstScript);
     var methodFactory = function (type) {
