@@ -13,7 +13,7 @@ var slash7 = slash7 || [];
             slash7.push([type].concat(Array.prototype.slice.call(arguments, 0)));
         };
     };
-    var methods = ['init', 'identify', 'track', 'setUserAttribute', 'register'];
+    var methods = ['init', 'identify', 'track', 'register'];
     for (var i = 0; i < methods.length; i++) {
         slash7[methods[i]] = methodFactory(methods[i]);
     }
