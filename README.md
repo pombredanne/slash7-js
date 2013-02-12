@@ -1,6 +1,6 @@
-# Tracker JS
+# SLASH-7 JS
 
-[![Build Status](https://travis-ci.org/pLucky-Inc/tracker-js.png)](https://travis-ci.org/pLucky-Inc/tracker-js)
+[![Build Status](https://travis-ci.org/pLucky-Inc/slash7-js.png)](https://travis-ci.org/pLucky-Inc/slash7-js)
 
 [SLASH-7](http://www.slash-7.com) の JavaScript client library です。
 
@@ -17,5 +17,5 @@
 ## ご意見・ご要望など
 
 Library, API の仕様や実装についてご意見・ご要望などございましたら
-[Issue](https://github.com/pLucky-Inc/tracker-js/issues)
+[Issue](https://github.com/pLucky-Inc/slash7-js/issues)
 に登録ください。
