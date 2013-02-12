@@ -13,3 +13,9 @@
 
 本プログラムは top level の名前空間で `slash7` を使用します。
 他のプログラムと被らないようにご注意ください。
+
+## ご意見・ご要望など
+
+Library, API の仕様や実装についてご意見・ご要望などございましたら
+[Issue](https://github.com/pLucky-Inc/tracker-js/issues)
+に登録ください。
