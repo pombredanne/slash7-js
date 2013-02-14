@@ -147,4 +147,33 @@
         expect(0);
     });
 
+    test('#buildEvent()', function () {
+        var event = tracker.buildEvent('event', {p1: 'v1', p2: 'v2'}, {
+            _transact_id: "transaction012345",
+            _items: [
+                {
+                    _item_id: "ITEM_A",
+                    _price: 1000,
+                    _num: 1
+                }
+            ]
+        });
+        deepEqual(event, {
+            _app_user_id: tracker.user.uid,
+            _app_user_id_type: tracker.user.uidType,
+            _event_name: 'event',
+            _event_params: {p1: 'v1', p2: 'v2'},
+            _transact_id: "transaction012345",
+            _items: [
+                {
+                    _item_id: "ITEM_A",
+                    _name: 'ITEM_A',
+                    _price: 1000,
+                    _num: 1
+                }
+            ],
+            _total_price: 1000
+        });
+    });
+
 }(slash7));
