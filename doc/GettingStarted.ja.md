@@ -28,6 +28,35 @@ slash7.track("page_load");
 slash7.track("page_load", {url: window.location.href});
 ````
 
+### 課金イベント
+
+課金イベントでは課金に関する情報を `slash7.track()` の第三引き数で指定します。
+各 key の値については
+[Event log format](https://p-lucky.atlassian.net/wiki/display/PUB/Event+log+format)
+の Payment part を参照します。
+
+`_items` 内要素の `_name` を明示的に指定しない場合には `_item_id` の値が用いられます。
+`_total_price` を明示的に指定しない場合には `_items` の各要素の `_price * _num` の合計値が用いられます。
+
+````
+slash7.track(
+    "payment",
+    null,
+    {
+        _transact_id: "transaction012345",
+        _items: [
+            {
+                 _item_id: "ITEM_A",
+                 _price: 1000,
+                 _num: 1
+            }
+        ]
+    }
+);
+````
+
+イベントパラメータを指定しない場合には、第二引き数に `null` を渡します。
+
 ## ユーザIDの指定
 
 ユーザIDを JavaScript から指定することができます。
