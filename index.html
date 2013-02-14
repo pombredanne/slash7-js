@@ -1,89 +1,145 @@
-<!DOCTYPE html>
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
 <html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640" />
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
 
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#main_content').headsmart()
-      })
-    </script>
-    <title>SLASH-7 JavaScript library by pLucky-Inc</title>
-  </head>
+  <title>SLASH-7 JavaScript library</title>
+  <meta name="description" content="">
 
-  <body>
-    <a id="forkme_banner" href="https://github.com/pLucky-Inc/slash7-js">View on GitHub</a>
-    <div class="shell">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
-      <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>SLASH-7 JavaScript library</h1>
-            <h2></h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-      </header>
+</head>
 
-      <section id="downloads">
-        <span class="inner">
-          <a href="https://github.com/pLucky-Inc/slash7-js/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/pLucky-Inc/slash7-js/tarball/master" class="tgz"><em>download</em> .TGZ</a>
-        </span>
-      </section>
+<body>
 
+  <div class="wrapper">
+    <header>
+      <h1 class="title">SLASH-7 JavaScript library</h1>
+    </header>
+    <div id="container">
+      <p class="tagline"></p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/pLucky-Inc/slash7-js/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/pLucky-Inc/slash7-js/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/pLucky-Inc/slash7-js" class="code">View SLASH-7 JavaScript library on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>Getting started</h1>
 
-      <span class="banner-fix"></span>
+<h2>コードスニペットの挿入</h2>
 
+<p>以下のコードを body tag を閉じる直前 (<code>&lt;/body&gt;</code> の直前) に書きます。
+<code>[YOUR TRACKING CODE]</code> にはあなたのプロジェクト用に発行された tracking code を入れてください。</p>
 
-      <section id="main_content">
-        <h1>SLASH-7 JS</h1>
+<pre><code>var slash7=slash7||[];(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===document.location.protocol?"https":"http")+"://d9nbmxmbhbtmj.cloudfront.net/v1/slash7.min.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b);for(var a=function(a){return function(){slash7.push([a].concat(Array.prototype.slice.call(arguments,0)))}},b=["init","identify","track","register"],c=0;c&lt;b.length;c++)slash7[b[c]]=a(b[c])})();
+slash7.init("[YOUR TRACKING CODE]");
+</code></pre>
 
-<p><a href="https://travis-ci.org/pLucky-Inc/slash7-js"><img src="https://travis-ci.org/pLucky-Inc/slash7-js.png" alt="Build Status"></a></p>
+<h2>イベントの送信</h2>
 
-<p><a href="http://www.slash-7.com">SLASH-7</a> の JavaScript client library です。</p>
+<p>イベントの送信は <code>slash7.track()</code> で行います。
+例えば <code>page_load</code> イベントを送信するには次のようにします。</p>
 
-<h2>How to start hacking</h2>
+<pre><code>slash7.track("page_load");
+</code></pre>
 
-<ol>
-<li>nvm を使って Node.js を入れる。</li>
-<li>
-<code>./grunt</code> でテスト・ビルドを実行。</li>
-</ol><h2>Top level 変数</h2>
+<h3>イベントパラメータ</h3>
 
-<p>本プログラムは top level の名前空間で <code>slash7</code> を使用します。
-他のプログラムと被らないようにご注意ください。</p>
+<p>イベントパラメータは <code>slash7.track()</code> の第二引き数で指定します。
+例えば <code>url</code> をイベントパラメータとして指定してイベントを送信するには次のようにします。</p>
 
-<h2>ご意見・ご要望など</h2>
+<pre><code>slash7.track("page_load", {url: window.location.href});
+</code></pre>
 
-<p>Library, API の仕様や実装についてご意見・ご要望などございましたら
-<a href="https://github.com/pLucky-Inc/slash7-js/issues">Issue</a>
-に登録ください。</p>
-      </section>
+<h3>課金イベント</h3>
 
-      <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>this project by <a href="https://github.com/pLucky-Inc">pLucky-Inc</a> can be found on <a href="https://github.com/pLucky-Inc/slash7-js">GitHub</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
-        <span class="octocat"></span>
-      </footer>
+<p>課金イベントは <code>slash7.track()</code> の第三引き数で指定します。
+各 key の値については
+<a href="https://p-lucky.atlassian.net/wiki/display/PUB/Event+log+format">Event log format</a>
+の Payment part を参照します。</p>
 
+<p><code>_items</code> 内要素の <code>_name</code> を明示的に指定しない場合には <code>_item_id</code> の値が用いられます。
+<code>_total_price</code> を明示的に指定しない場合には <code>_items</code> の各要素の <code>_price * _num</code> の合計値が用いられます。</p>
+
+<pre><code>slash7.track(
+    "payment",
+    null,
+    {
+        _transact_id: "transaction012345",
+        _items: [
+            {
+                 _item_id: "ITEM_A",
+                 _price: 1000,
+                 _num: 1
+            }
+        ]
+    }
+);
+</code></pre>
+
+<p>イベントパラメータを指定しない場合には、第二引き数に <code>null</code> を渡します。</p>
+
+<h2>ユーザIDの指定</h2>
+
+<p>ユーザIDを JavaScript から指定することができます。</p>
+
+<p>初回はユーザIDがランダムに生成され、cookieに保存されます。
+そのため、異なるブラウザやコンピュータからアクセスした場合、同一ユーザでも異なるユーザIDで記録されます。
+またバックエンドでもログを記録している場合、ランダムに生成されたユーザIDとバックエンドで記録しているアプリケーションのユーザIDを照合することは困難です。
+ユーザIDを JavaScript から指定することで、指定したユーザIDを cookie に保存します。
+以降のイベント送信では保存されたユーザIDが使用されます。</p>
+
+<p>ユーザIDを指定するには <code>slash7.identify()</code> を使います。</p>
+
+<pre><code>slash7.identify("user012345");
+</code></pre>
+
+<h2>ユーザ属性</h2>
+
+<p>ユーザ属性は <code>slash7.register()</code> で指定します。
+指定されたユーザ属性は、次のイベント送信時にサーバへ送付されます。
+イベントを送付しなかった場合、指定したユーザ属性は失われるので注意してください。</p>
+
+<p>例えば userAgent, platform をユーザ属性として指定し、イベントを送付するには以下のようにします。</p>
+
+<pre><code>slash7.register({
+    userAgent: window.navigator.userAgent,
+    platform: window.navigator.platform
+});
+slash7.track("page_load");
+</code></pre>
+        </article>
+      </div>
     </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/pLucky-Inc" class="avatar"><img src="https://secure.gravatar.com/avatar/cf0c63cf88700be224f2997ac09cf8ca?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" width="48" height="48"/></a> <a href="https://github.com/pLucky-Inc">pLucky-Inc</a> maintains <a href="https://github.com/pLucky-Inc/slash7-js">SLASH-7 JavaScript library</a></p>
 
-    
-  </body>
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="http://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/pLucky-Inc/slash7-js/tarball/master" class="tar">tar</a><a href="https://github.com/pLucky-Inc/slash7-js/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+  
+</body>
 </html>
