@@ -40,11 +40,13 @@
 
 <h2>コードスニペットの挿入</h2>
 
-<p>以下のコードを body tag を閉じる直前 (<code>&lt;/body&gt;</code> の直前) に書きます。
+<p>以下の <code>&lt;script&gt;</code> タグを最初に <code>slash7</code> にアクセスする前(たとえば <code>&lt;/head&gt;</code> の直前など)に書きます。
 <code>[YOUR TRACKING CODE]</code> にはあなたのプロジェクト用に発行された tracking code を入れてください。</p>
 
-<pre><code>var slash7=slash7||[];(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===document.location.protocol?"https":"http")+"://d9nbmxmbhbtmj.cloudfront.net/v1/slash7.min.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b);for(var a=function(a){return function(){slash7.push([a].concat(Array.prototype.slice.call(arguments,0)))}},b=["init","identify","track","register"],c=0;c&lt;b.length;c++)slash7[b[c]]=a(b[c])})();
+<pre><code>&lt;script type="text/javascript"&gt;
+var slash7=slash7||[];(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===document.location.protocol?"https":"http")+"://d9nbmxmbhbtmj.cloudfront.net/v1/slash7.min.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b);for(var a=function(a){return function(){slash7.push([a].concat(Array.prototype.slice.call(arguments,0)))}},b=["init","identify","track","register"],c=0;c&lt;b.length;c++)slash7[b[c]]=a(b[c])})();
 slash7.init("[YOUR TRACKING CODE]");
+&lt;/script&gt;
 </code></pre>
 
 <h2>イベントの送信</h2>
@@ -65,7 +67,7 @@ slash7.init("[YOUR TRACKING CODE]");
 
 <h3>課金イベント</h3>
 
-<p>課金イベントは <code>slash7.track()</code> の第三引き数で指定します。
+<p>課金イベントでは課金に関する情報を <code>slash7.track()</code> の第三引き数で指定します。
 各 key の値については
 <a href="https://p-lucky.atlassian.net/wiki/display/PUB/Event+log+format">Event log format</a>
 の Payment part を参照します。</p>
