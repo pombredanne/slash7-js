@@ -91,3 +91,53 @@ slash7.register({
 slash7.track("page_load");
 ````
 
+## リンククリックを追跡する際の注意点
+
+リンククリックを `slash7.track()` で追跡しようとした場合、イベントが送信されないことがあります。一見良さそうな以下のコードを見てください(jQuery を利用している前提です)。
+
+````
+// イベントが送信されないことがあるコード。 
+// <a id="link" href="http://example.com"> というリンクのクリックを追跡したい。
+$("#link").click(function() {
+  slash7.track("click");
+});
+````
+
+`slash7.track()` は非同期に実行されます。
+関数を呼び出した時点でイベントの送信を開始しますが、送信が完了する前にブラウザが次のページへ移動することがあります。
+このときイベントは SLASH-7 に送信されない可能性があります。
+
+ページの移動を少し遅らせることで問題を大きく改善できます。
+以下のようにページの移動を少し遅らせます。
+
+````
+$("#link").click(function(event) {
+  var _this = this;
+  event.preventDefault();  // クリックによるページ移動を取り消す。
+  setTimeout(function() {  // 300ms 後に改めてページ移動する。
+    document.location.href = _this.href;
+  }, 300);
+  slash7.track("click");
+});
+````
+
+### フォームの送信を追跡する
+
+フォーム送信を追跡する場合にも同様にイベントが送信されないことがあります。
+以下のようにすることで問題を改善することができます。
+
+````
+// <form id="form" action="http://example.com"> というフォームの送信を追跡したい
+$("#form").submit(function(event) {
+  var _this = this;
+  event.preventDefault();  // フォーム送信を取り消す。
+  $(":input", this).attr("disabled", true);  // 入力を無効にする。
+  // 300ms 後に改めてフォーム送信する。
+  setTimeout(function() {
+    _this.submit();
+  }, 300);
+  slash7.track("submit");
+});
+````
+
+
