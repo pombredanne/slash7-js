@@ -7,7 +7,8 @@
 ## How to start hacking
 
 1. nvm を使って Node.js を入れる。
-2. `./grunt` でテスト・ビルドを実行。
+2. [PhantomJS](http://phantomjs.org/download.html) を入れる。
+3. `./grunt` でテスト・ビルドを実行。
 
 ## Top level 変数
 
