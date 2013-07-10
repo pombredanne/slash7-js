@@ -28,6 +28,12 @@
         equal($ns.Cookie.getDomain(), ".example.com");
     });
 
+    test("init() with domain", function () {
+        $ns.init(code, { domain: "example.com"});
+        ok($ns.tracker);
+        equal($ns.Cookie.getDomain(), ".example.com");
+    });
+
     test("track()", function () {
         expect(0);
         $ns.init(code);
