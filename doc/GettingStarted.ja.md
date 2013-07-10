@@ -12,6 +12,13 @@ slash7.init("[YOUR TRACKING CODE]");
 </script>
 ````
 
+サブドメインに対してトラッキングを行いたい場合は、上記 `slash7.init()` の第二引数に `domain` を指定してください。
+
+````
+// www.example.com と test.example.com の両方をトラッキングしたい場合
+slash7.init("[YOUR TRACKING CODE]", {domain: "example.com"});
+````
+
 ## イベントの送信
 
 イベントの送信は `slash7.track()` で行います。
