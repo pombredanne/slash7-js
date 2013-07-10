@@ -36,9 +36,11 @@
         <span class="blc"></span><span class="trc"></span>
         </div>
         <article class="markdown-body">
-          <h1>Getting started</h1>
+          <h1>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h1>
 
-<h2>コードスニペットの挿入</h2>
+<h2>
+<a name="" class="anchor" href="#"><span class="octicon octicon-link"></span></a>コードスニペットの挿入</h2>
 
 <p>以下の <code>&lt;script&gt;</code> タグを最初に <code>slash7</code> にアクセスする前(たとえば <code>&lt;/head&gt;</code> の直前など)に書きます。
 <code>[YOUR TRACKING CODE]</code> にはあなたのプロジェクト用に発行された tracking code を入れてください。</p>
@@ -49,7 +51,14 @@ slash7.init("[YOUR TRACKING CODE]");
 &lt;/script&gt;
 </code></pre>
 
-<h2>イベントの送信</h2>
+<p>サブドメインに対してトラッキングを行いたい場合は、上記 <code>slash7.init()</code> の第二引数に <code>domain</code> を指定してください。</p>
+
+<pre><code>// www.example.com と test.example.com の両方をトラッキングしたい場合
+slash7.init("[YOUR TRACKING CODE]", {domain: "example.com"});
+</code></pre>
+
+<h2>
+<a name="-1" class="anchor" href="#-1"><span class="octicon octicon-link"></span></a>イベントの送信</h2>
 
 <p>イベントの送信は <code>slash7.track()</code> で行います。
 例えば <code>page_load</code> イベントを送信するには次のようにします。</p>
@@ -57,7 +66,8 @@ slash7.init("[YOUR TRACKING CODE]");
 <pre><code>slash7.track("page_load");
 </code></pre>
 
-<h3>イベントパラメータ</h3>
+<h3>
+<a name="-2" class="anchor" href="#-2"><span class="octicon octicon-link"></span></a>イベントパラメータ</h3>
 
 <p>イベントパラメータは <code>slash7.track()</code> の第二引き数で指定します。
 例えば <code>url</code> をイベントパラメータとして指定してイベントを送信するには次のようにします。</p>
@@ -65,7 +75,8 @@ slash7.init("[YOUR TRACKING CODE]");
 <pre><code>slash7.track("page_load", {url: window.location.href});
 </code></pre>
 
-<h3>課金イベント</h3>
+<h3>
+<a name="-3" class="anchor" href="#-3"><span class="octicon octicon-link"></span></a>課金イベント</h3>
 
 <p>課金イベントでは課金に関する情報を <code>slash7.track()</code> の第三引き数で指定します。
 各 key の値については
@@ -93,7 +104,8 @@ slash7.init("[YOUR TRACKING CODE]");
 
 <p>イベントパラメータを指定しない場合には、第二引き数に <code>null</code> を渡します。</p>
 
-<h2>ユーザIDの指定</h2>
+<h2>
+<a name="id" class="anchor" href="#id"><span class="octicon octicon-link"></span></a>ユーザIDの指定</h2>
 
 <p>ユーザIDを JavaScript から指定することができます。</p>
 
@@ -108,7 +120,8 @@ slash7.init("[YOUR TRACKING CODE]");
 <pre><code>slash7.identify("user012345");
 </code></pre>
 
-<h2>ユーザ属性</h2>
+<h2>
+<a name="-4" class="anchor" href="#-4"><span class="octicon octicon-link"></span></a>ユーザ属性</h2>
 
 <p>ユーザ属性は <code>slash7.register()</code> で指定します。
 指定されたユーザ属性は、次のイベント送信時にサーバへ送付されます。
@@ -123,7 +136,8 @@ slash7.init("[YOUR TRACKING CODE]");
 slash7.track("page_load");
 </code></pre>
 
-<h2>リンククリックを追跡する際の注意点</h2>
+<h2>
+<a name="-5" class="anchor" href="#-5"><span class="octicon octicon-link"></span></a>リンククリックを追跡する際の注意点</h2>
 
 <p>リンククリックを <code>slash7.track()</code> で追跡しようとした場合、イベントが送信されないことがあります。一見良さそうな以下のコードを見てください(jQuery を利用している前提です)。</p>
 
@@ -151,7 +165,8 @@ $("#link").click(function() {
 });
 </code></pre>
 
-<h3>フォームの送信を追跡する</h3>
+<h3>
+<a name="-6" class="anchor" href="#-6"><span class="octicon octicon-link"></span></a>フォームの送信を追跡する</h3>
 
 <p>フォーム送信を追跡する場合にも同様にイベントが送信されないことがあります。
 以下のようにすることで問題を改善することができます。</p>
@@ -178,7 +193,7 @@ $("#form").submit(function(event) {
 
       </div>
       <div class="creds">
-        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="http://twitter.com/jonrohan/">Jon Rohan</a></small>
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
       </div>
     </footer>
   </div>
