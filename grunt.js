@@ -14,7 +14,15 @@ module.exports = function(grunt) {
     },
     concat: {
       dist: {
-        src: ['lib/**/*.js', 'third-party/**/*.js'],
+        src: [
+            // The order matters!
+            'third-party/**/*.js',
+            'lib/util.js',
+            'lib/cookie.js',
+            'lib/network.js',
+            'lib/user.js',
+            'lib/tracker.js'
+        ],
         dest: 'dist/slash7.js'
       }
     },
