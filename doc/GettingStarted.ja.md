@@ -44,10 +44,10 @@ slash7.init("[YOUR TRACKING CODE]", {domain: "example.com", samplingRate: 0.3});
 ## イベントの送信
 
 イベントの送信は `slash7.track()` で行います。
-例えば `page_load` イベントを送信するには次のようにします。
+例えば `action1` イベントを送信するには次のようにします。
 
 ````
-slash7.track("page_load");
+slash7.track("action1");
 ````
 
 ### イベントパラメータ
@@ -56,7 +56,7 @@ slash7.track("page_load");
 例えば `url` をイベントパラメータとして指定してイベントを送信するには次のようにします。
 
 ````
-slash7.track("page_load", {url: window.location.href});
+slash7.track("action1", {url: window.location.href});
 ````
 
 ### ページロードイベント送信
@@ -137,7 +137,7 @@ slash7.register({
     userAgent: window.navigator.userAgent,
     platform: window.navigator.platform
 });
-slash7.track("page_load");
+slash7.track("action1");
 ````
 
 ## リンククリックを追跡する際の注意点
@@ -188,5 +188,3 @@ $("#form").submit(function(event) {
   slash7.track("submit");
 });
 ````
-
-
