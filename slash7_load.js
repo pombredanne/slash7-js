@@ -1,4 +1,3 @@
-// compress with http://closure-compiler.appspot.com/ , optimization level Simple
 var slash7 = slash7 || [];
 (function() {
     var script = document.createElement('script');
@@ -13,7 +12,8 @@ var slash7 = slash7 || [];
             slash7.push([type].concat(Array.prototype.slice.call(arguments, 0)));
         };
     };
-    var methods = ['init', 'identify', 'track', 'register'];
+
+    var methods = ['init', 'identify', 'trackPageLoad', 'track', 'register'];
     for (var i = 0; i < methods.length; i++) {
         slash7[methods[i]] = methodFactory(methods[i]);
     }

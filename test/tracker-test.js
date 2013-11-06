@@ -34,6 +34,27 @@
         equal($ns.Cookie.getDomain(), ".example.com");
     });
 
+    test("init() with samplingRate", function () {
+        $ns.init(code, { samplingRate: 0.1 });
+        equal($ns.tracker.samplingRate, 0.1);
+
+        $ns.init(code, { samplingRate: 0 });
+        equal($ns.tracker.samplingRate, 0);
+
+        raises(function () {
+            $ns.init(code, {samplingRate: 30});
+        });
+    });
+
+    test("trackPageLoad()", function () {
+        expect(0);
+        $ns.init(code);
+        var mock = sinon.mock($ns.tracker);
+        mock.expects("trackPageLoad").once();
+        $ns.trackPageLoad();
+        mock.verify();
+    });
+
     test("track()", function () {
         expect(0);
         $ns.init(code);
@@ -159,6 +180,52 @@
         expect(0);
     });
 
+    test('setSamplingRate()', function() {
+        equal(tracker.samplingRate, 1, 'default sampling rate should be 1');
+
+        // set samplingRage member.
+        tracker.setSamplingRate(0.6);
+        equal(tracker.samplingRate, 0.6);
+
+        // Only accepts 0~1
+        tracker.setSamplingRate(0);
+        equal(tracker.samplingRate, 0);
+        tracker.setSamplingRate(1);
+        equal(tracker.samplingRate, 1);
+        raises(function () {tracker.setSamplingRate(-0.1)});
+        raises(function () {tracker.setSamplingRate(1.1)});
+    });
+
+    test('shouldSample()', function() {
+        var i;
+
+        tracker.setSamplingRate(0);
+        for (i = 0; i < 100; i++) {
+            tracker.user.identify('user' + i);
+            equal(tracker.shouldSample(), false,
+                  'should not be sampled when sampling rate is 0');
+        }
+
+        tracker.setSamplingRate(1);
+        for (i = 0; i < 100; i++) {
+            tracker.user.identify('user' + i);
+            equal(tracker.shouldSample(), true,
+                  'should be sampled when sampling rate is 1');
+        }
+
+
+        tracker.setSamplingRate(0.3);
+        var sendNum = 0;
+        for (i = 0; i < 100; i++) {
+            tracker.user.identify('user' + i);
+            if (tracker.shouldSample()) {
+                sendNum ++;
+            }
+        }
+        equal(sendNum > 25 && sendNum < 35, true,
+              'should sample almost 30 users out of 100 when sampling rate is 0.3');
+    });
+
     test('#buildEvent()', function () {
         var event = tracker.buildEvent('event', {p1: 'v1', p2: 'v2'}, {
             _transact_id: "transaction012345",
@@ -186,6 +253,25 @@
             ],
             _total_price: 1000
         });
+    });
+
+    test('trackPageLoad()', function () {
+        var mock = sinon.mock(tracker);
+        mock.expects('track').withArgs(
+            'page_load',
+            sinon.match({
+                domain: sinon.match.string,
+                path: sinon.match.string,
+                query: sinon.match.string,
+                referer: sinon.match.string,
+                referer_domain: sinon.match.string,
+                platform: sinon.match.string,
+                user_agent: sinon.match.string
+            })
+        ).once();
+        tracker.trackPageLoad();
+        mock.verify();
+        expect(0);
     });
 
 }(slash7));
