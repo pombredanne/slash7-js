@@ -7,7 +7,7 @@
 
 ````
 <script type="text/javascript">
-var slash7=slash7||[];(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===document.location.protocol?"https":"http")+"://d9nbmxmbhbtmj.cloudfront.net/v1/slash7.min.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b);for(var a=function(a){return function(){slash7.push([a].concat(Array.prototype.slice.call(arguments,0)))}},b=["init","identify","track","register"],c=0;c<b.length;c++)slash7[b[c]]=a(b[c])})();
+var slash7=slash7||[];!function(){var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"===document.location.protocol?"https":"http")+"://d9nbmxmbhbtmj.cloudfront.net/v1/slash7.min.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b);for(var c=function(a){return function(){slash7.push([a].concat(Array.prototype.slice.call(arguments,0)))}},d=["init","identify","trackPageLoad","track","register"],e=0;e<d.length;e++)slash7[d[e]]=c(d[e])}();
 slash7.init("[YOUR TRACKING CODE]");
 </script>
 ````
@@ -17,6 +17,26 @@ slash7.init("[YOUR TRACKING CODE]");
 ````
 // www.example.com と test.example.com の両方をトラッキングしたい場合
 slash7.init("[YOUR TRACKING CODE]", {domain: "example.com"});
+````
+
+### サンプリング設定
+
+ユーザベースのサンプリングを実施したい場合は、上記 `slash7.init()` の第二引数に `samplingRate` を指定してください。
+`samplingRate` の値は 0 から 1 の間の数字を指定します。
+0を指定したときはどのユーザも記録しません（`track()`、`trackPageLoad()` 呼び出し時にイベントが送信されません）。
+1を指定したときは全ユーザを記録します。
+例えば 0.3 を指定したときは、全ユーザのおおよそ3割にあたるユーザを記録します。
+
+````
+// 3割のユーザを記録したい場合
+slash7.init("[YOUR TRACKING CODE]", {samplingRate: 0.3});
+````
+
+`domain` と `samplingRate` は同時に指定することができます。
+
+````
+// domain と samplingRate を同時に指定する場合
+slash7.init("[YOUR TRACKING CODE]", {domain: "example.com", samplingRate: 0.3});
 ````
 
 ## イベントの送信
@@ -36,6 +56,25 @@ slash7.track("page_load");
 ````
 slash7.track("page_load", {url: window.location.href});
 ````
+
+### ページロードイベント送信
+
+`slash7.trackPageLoad()` はWebページのロードを表すイベントを送信します。
+この関数は以下の情報を引き数にして `slash7.track()` を呼び出したときと同じ効果があります。
+
+* イベント名: `page_load`
+* イベントパラメータ
+    * `domain`: ページのドメイン
+    * `path`: ページのパス
+    * `query`: ページのクエリ部分
+    * `referer`: リファラ
+    * `referer_domain`: リファラのドメイン
+    * `platform`: `window.navigator.platform`
+    * `user_agent`: `window.navigator.userAgent`
+
+注意: `slash7.trackPageLoad()` は 2013年11月6日に追加されました。
+追加に伴い本文書冒頭のコードスニペットが変更されています。
+2013年11月6日以前にコードスニペットを導入されたお客様は、本文書冒頭に掲載しているコードスニペットに更新してください。
 
 ### 課金イベント
 
