@@ -23,7 +23,7 @@ slash7.init("[YOUR TRACKING CODE]", {domain: "example.com"});
 
 ユーザベースのサンプリングを実施したい場合は、上記 `slash7.init()` の第二引数に `samplingRate` を指定してください。
 `samplingRate` の値は 0 から 1 の間の数字を指定します。
-0を指定したときはどのユーザも記録しません（`track()`、`trackPageLoad()` 呼び出し時にイベントが送信されません）。
+0を指定したときはどのユーザも記録しません（`track()`、`trackPageLoad()` 呼び出し時にイベントが送信しません）。
 1を指定したときは全ユーザを記録します。
 例えば 0.3 を指定したときは、全ユーザのおおよそ3割にあたるユーザを記録します。
 
@@ -31,6 +31,8 @@ slash7.init("[YOUR TRACKING CODE]", {domain: "example.com"});
 // 3割のユーザを記録したい場合
 slash7.init("[YOUR TRACKING CODE]", {samplingRate: 0.3});
 ````
+
+`samplingRate` を指定しなかったときは全ユーザを記録します。
 
 `domain` と `samplingRate` は同時に指定することができます。
 
@@ -74,7 +76,8 @@ slash7.track("page_load", {url: window.location.href});
 
 注意: `slash7.trackPageLoad()` は 2013年11月6日に追加されました。
 追加に伴い本文書冒頭のコードスニペットが変更されています。
-2013年11月6日以前にコードスニペットを導入されたお客様は、本文書冒頭に掲載しているコードスニペットに更新してください。
+2013年11月6日以前にコードスニペットを導入し、かつ、`slash7.trackPageLoad()` を
+利用するお客様は、本文書冒頭に掲載しているコードスニペットに更新してください。
 
 ### 課金イベント
 
