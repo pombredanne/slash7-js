@@ -61,4 +61,20 @@
         equal(u.uidType, "app");
         equal(u.uid, "user0123");
     });
+
+   test("hash", function() {
+       var u1 = new $ns.User("app", "user1");
+       var u1a = new $ns.User("app", "user1");
+       var u1b = new $ns.User("facebook", "user1");
+       var u2 = new $ns.User("app", "user2");
+
+       equal(u1.hash(), u1a.hash(),
+             'it should be same when uid is same');
+       notEqual(u1.hash(), u1b.hash(),
+               'it should differ when uidType differs');
+       equal(typeof u1.hash(), 'number', 'it should be number');
+       equal(u1.hash() % 1, 0, 'it should be int');
+       notEqual(u1.hash(), u2.hash(),
+                'it should differ when uid differs');
+   });
 }(slash7));

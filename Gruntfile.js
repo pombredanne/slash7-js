@@ -22,7 +22,7 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      files: ['<%= lint.files %>', 'test/**/*.js'],
+      files: ['<%= jshint.files %>', 'test/**/*.js'],
       tasks: 'default'
     },
     jshint: {
@@ -39,11 +39,14 @@ module.exports = function(grunt) {
         eqnull: true,
         browser: true
       },
-      files: ['Gruntfile.js', 'lib/**/*.js']
+      files: ['Gruntfile.js', 'lib/**/*.js', 'slash7_load.js']
     },
     uglify: {
       slash7: {
-        files: {'dist/slash7.min.js': ['<%= concat.dist.dest %>']}
+        files: {
+            'dist/slash7.min.js': ['<%= concat.dist.dest %>'],
+            'dist/slash7_load.min.js': ['slash7_load.js']
+        }
       }
     }
   });
