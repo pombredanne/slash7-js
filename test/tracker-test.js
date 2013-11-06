@@ -46,6 +46,15 @@
         });
     });
 
+    test("trackPageLoad()", function () {
+        expect(0);
+        $ns.init(code);
+        var mock = sinon.mock($ns.tracker);
+        mock.expects("trackPageLoad").once();
+        $ns.trackPageLoad();
+        mock.verify();
+    });
+
     test("track()", function () {
         expect(0);
         $ns.init(code);
@@ -244,6 +253,25 @@
             ],
             _total_price: 1000
         });
+    });
+
+    test('trackPageLoad()', function () {
+        var mock = sinon.mock(tracker);
+        mock.expects('track').withArgs(
+            'page_load',
+            sinon.match({
+                domain: sinon.match.string,
+                path: sinon.match.string,
+                query: sinon.match.string,
+                referer: sinon.match.string,
+                referer_domain: sinon.match.string,
+                platform: sinon.match.string,
+                user_agent: sinon.match.string
+            })
+        ).once();
+        tracker.trackPageLoad();
+        mock.verify();
+        expect(0);
     });
 
 }(slash7));

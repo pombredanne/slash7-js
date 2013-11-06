@@ -13,7 +13,7 @@ var slash7 = slash7 || [];
         };
     };
 
-    var methods = ['init', 'identify', 'track', 'register'];
+    var methods = ['init', 'identify', 'trackPageLoad', 'track', 'register'];
     for (var i = 0; i < methods.length; i++) {
         slash7[methods[i]] = methodFactory(methods[i]);
     }
