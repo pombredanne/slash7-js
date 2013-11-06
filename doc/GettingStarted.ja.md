@@ -34,7 +34,7 @@ slash7.init("[YOUR TRACKING CODE]", {samplingRate: 0.3});
 
 `samplingRate` を指定しなかったときは全ユーザを記録します。
 
-`domain` と `samplingRate` は同時に指定することができます。
+`domain` と `samplingRate` は同時に指定できます。
 
 ````
 // domain と samplingRate を同時に指定する場合
