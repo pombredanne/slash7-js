@@ -77,4 +77,9 @@
        notEqual(u1.hash(), u2.hash(),
                 'it should differ when uid differs');
    });
+
+    test('uniqueId()', function() {
+        var u = new $ns.User('app', 'user1');
+        equal(u.uniqueId(), 'app.user1');
+    });
 }(slash7));
