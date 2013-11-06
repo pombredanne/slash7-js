@@ -12,35 +12,6 @@ slash7.init("[YOUR TRACKING CODE]");
 </script>
 ````
 
-サブドメインに対してトラッキングを行いたい場合は、上記 `slash7.init()` の第二引数に `domain` を指定してください。
-
-````
-// www.example.com と test.example.com の両方をトラッキングしたい場合
-slash7.init("[YOUR TRACKING CODE]", {domain: "example.com"});
-````
-
-### サンプリング設定
-
-ユーザベースのサンプリングを実施したい場合は、上記 `slash7.init()` の第二引数に `samplingRate` を指定してください。
-`samplingRate` の値は 0 から 1 の間の数字を指定します。
-0を指定したときはどのユーザも記録しません（`track()`、`trackPageLoad()` 呼び出し時にイベントを送信しません）。
-1を指定したときは全ユーザを記録します。
-例えば 0.3 を指定したときは、全ユーザのおおよそ3割にあたるユーザを記録します。
-
-````
-// 3割のユーザを記録したい場合
-slash7.init("[YOUR TRACKING CODE]", {samplingRate: 0.3});
-````
-
-`samplingRate` を指定しなかったときは全ユーザを記録します。
-
-`domain` と `samplingRate` は同時に指定できます。
-
-````
-// domain と samplingRate を同時に指定する場合
-slash7.init("[YOUR TRACKING CODE]", {domain: "example.com", samplingRate: 0.3});
-````
-
 ## イベントの送信
 
 イベントの送信は `slash7.track()` で行います。
@@ -140,6 +111,37 @@ slash7.register({
 slash7.track("action1");
 ````
 
+## 複数のサブドメインをトラッキングする
+
+サブドメインに対してトラッキングを行いたい場合は、`slash7.init()` の第二引数に `domain` を指定してください。
+
+````
+// www.example.com と test.example.com の両方をトラッキングしたい場合
+slash7.init("[YOUR TRACKING CODE]", {domain: "example.com"});
+````
+
+## サンプリング設定
+
+ユーザベースのサンプリングを実施したい場合は、`slash7.init()` の第二引数に `samplingRate` を指定してください。
+`samplingRate` の値は 0 から 1 の間の数字を指定します。
+0を指定したときはどのユーザも記録しません（`track()`、`trackPageLoad()` 呼び出し時にイベントを送信しません）。
+1を指定したときは全ユーザを記録します。
+例えば 0.3 を指定したときは、全ユーザのおおよそ3割にあたるユーザを記録します。
+
+````
+// 3割のユーザを記録したい場合
+slash7.init("[YOUR TRACKING CODE]", {samplingRate: 0.3});
+````
+
+`samplingRate` を指定しなかったときは全ユーザを記録します。
+
+`domain` と `samplingRate` は同時に指定できます。
+
+````
+// domain と samplingRate を同時に指定する場合
+slash7.init("[YOUR TRACKING CODE]", {domain: "example.com", samplingRate: 0.3});
+````
+
 ## リンククリックを追跡する際の注意点
 
 リンククリックを `slash7.track()` で追跡しようとした場合、イベントが送信されないことがあります。一見良さそうな以下のコードを見てください(jQuery を利用している前提です)。
@@ -169,6 +171,7 @@ $("#link").click(function(event) {
   slash7.track("click");
 });
 ````
+
 
 ### フォームの送信を追跡する
 
