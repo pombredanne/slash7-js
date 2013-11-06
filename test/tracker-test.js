@@ -36,8 +36,10 @@
 
     test("init() with samplingRate", function () {
         $ns.init(code, { samplingRate: 0.1 });
-        ok($ns.tracker);
         equal($ns.tracker.samplingRate, 0.1);
+
+        $ns.init(code, { samplingRate: 0 });
+        equal($ns.tracker.samplingRate, 0);
 
         raises(function () {
             $ns.init(code, {samplingRate: 30});
