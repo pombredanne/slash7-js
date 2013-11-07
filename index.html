@@ -40,43 +40,72 @@
 <a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h1>
 
 <h2>
-<a name="" class="anchor" href="#"><span class="octicon octicon-link"></span></a>コードスニペットの挿入</h2>
+<a name="%E3%82%B3%E3%83%BC%E3%83%89%E3%82%B9%E3%83%8B%E3%83%9A%E3%83%83%E3%83%88%E3%81%AE%E6%8C%BF%E5%85%A5" class="anchor" href="#%E3%82%B3%E3%83%BC%E3%83%89%E3%82%B9%E3%83%8B%E3%83%9A%E3%83%83%E3%83%88%E3%81%AE%E6%8C%BF%E5%85%A5"><span class="octicon octicon-link"></span></a>コードスニペットの挿入</h2>
 
 <p>以下の <code>&lt;script&gt;</code> タグを最初に <code>slash7</code> にアクセスする前(たとえば <code>&lt;/head&gt;</code> の直前など)に書きます。
 <code>[YOUR TRACKING CODE]</code> にはあなたのプロジェクト用に発行された tracking code を入れてください。</p>
 
 <pre><code>&lt;script type="text/javascript"&gt;
-var slash7=slash7||[];(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===document.location.protocol?"https":"http")+"://d9nbmxmbhbtmj.cloudfront.net/v1/slash7.min.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b);for(var a=function(a){return function(){slash7.push([a].concat(Array.prototype.slice.call(arguments,0)))}},b=["init","identify","track","register"],c=0;c&lt;b.length;c++)slash7[b[c]]=a(b[c])})();
+var slash7=slash7||[];!function(){var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"===document.location.protocol?"https":"http")+"://d9nbmxmbhbtmj.cloudfront.net/v1/slash7.min.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b);for(var c=function(a){return function(){slash7.push([a].concat(Array.prototype.slice.call(arguments,0)))}},d=["init","identify","trackPageLoad","track","register"],e=0;e&lt;d.length;e++)slash7[d[e]]=c(d[e])}();
 slash7.init("[YOUR TRACKING CODE]");
 &lt;/script&gt;
 </code></pre>
 
-<p>サブドメインに対してトラッキングを行いたい場合は、上記 <code>slash7.init()</code> の第二引数に <code>domain</code> を指定してください。</p>
-
-<pre><code>// www.example.com と test.example.com の両方をトラッキングしたい場合
-slash7.init("[YOUR TRACKING CODE]", {domain: "example.com"});
-</code></pre>
-
 <h2>
-<a name="-1" class="anchor" href="#-1"><span class="octicon octicon-link"></span></a>イベントの送信</h2>
+<a name="%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%81%AE%E9%80%81%E4%BF%A1" class="anchor" href="#%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%81%AE%E9%80%81%E4%BF%A1"><span class="octicon octicon-link"></span></a>イベントの送信</h2>
 
 <p>イベントの送信は <code>slash7.track()</code> で行います。
-例えば <code>page_load</code> イベントを送信するには次のようにします。</p>
+例えば <code>action1</code> イベントを送信するには次のようにします。</p>
 
-<pre><code>slash7.track("page_load");
+<pre><code>slash7.track("action1");
 </code></pre>
 
 <h3>
-<a name="-2" class="anchor" href="#-2"><span class="octicon octicon-link"></span></a>イベントパラメータ</h3>
+<a name="%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF" class="anchor" href="#%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF"><span class="octicon octicon-link"></span></a>イベントパラメータ</h3>
 
 <p>イベントパラメータは <code>slash7.track()</code> の第二引き数で指定します。
 例えば <code>url</code> をイベントパラメータとして指定してイベントを送信するには次のようにします。</p>
 
-<pre><code>slash7.track("page_load", {url: window.location.href});
+<pre><code>slash7.track("action1", {url: window.location.href});
 </code></pre>
 
 <h3>
-<a name="-3" class="anchor" href="#-3"><span class="octicon octicon-link"></span></a>課金イベント</h3>
+<a name="%E3%83%9A%E3%83%BC%E3%82%B8%E3%83%AD%E3%83%BC%E3%83%89%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E9%80%81%E4%BF%A1" class="anchor" href="#%E3%83%9A%E3%83%BC%E3%82%B8%E3%83%AD%E3%83%BC%E3%83%89%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E9%80%81%E4%BF%A1"><span class="octicon octicon-link"></span></a>ページロードイベント送信</h3>
+
+<p><code>slash7.trackPageLoad()</code> はWebページのロードを表すイベントを送信します。
+この関数は以下の情報を引き数にして <code>slash7.track()</code> を呼び出したときと同じ効果があります。</p>
+
+<ul>
+<li>イベント名: <code>page_load</code>
+</li>
+<li>イベントパラメータ
+
+<ul>
+<li>
+<code>domain</code>: ページのドメイン</li>
+<li>
+<code>path</code>: ページのパス</li>
+<li>
+<code>query</code>: ページのクエリ部分</li>
+<li>
+<code>referer</code>: リファラ</li>
+<li>
+<code>referer_domain</code>: リファラのドメイン</li>
+<li>
+<code>platform</code>: <code>window.navigator.platform</code>
+</li>
+<li>
+<code>user_agent</code>: <code>window.navigator.userAgent</code>
+</li>
+</ul>
+</li>
+</ul><p>注意: <code>slash7.trackPageLoad()</code> は 2013年11月6日に追加されました。
+追加に伴い本文書冒頭のコードスニペットが変更されています。
+2013年11月6日以前にコードスニペットを導入し、かつ、<code>slash7.trackPageLoad()</code> を
+利用するお客様は、本文書冒頭に掲載しているコードスニペットに更新してください。</p>
+
+<h3>
+<a name="%E8%AA%B2%E9%87%91%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88" class="anchor" href="#%E8%AA%B2%E9%87%91%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88"><span class="octicon octicon-link"></span></a>課金イベント</h3>
 
 <p>課金イベントでは課金に関する情報を <code>slash7.track()</code> の第三引き数で指定します。
 各 key の値については
@@ -105,7 +134,7 @@ slash7.init("[YOUR TRACKING CODE]", {domain: "example.com"});
 <p>イベントパラメータを指定しない場合には、第二引き数に <code>null</code> を渡します。</p>
 
 <h2>
-<a name="id" class="anchor" href="#id"><span class="octicon octicon-link"></span></a>ユーザIDの指定</h2>
+<a name="%E3%83%A6%E3%83%BC%E3%82%B6id%E3%81%AE%E6%8C%87%E5%AE%9A" class="anchor" href="#%E3%83%A6%E3%83%BC%E3%82%B6id%E3%81%AE%E6%8C%87%E5%AE%9A"><span class="octicon octicon-link"></span></a>ユーザIDの指定</h2>
 
 <p>ユーザIDを JavaScript から指定することができます。</p>
 
@@ -121,7 +150,7 @@ slash7.init("[YOUR TRACKING CODE]", {domain: "example.com"});
 </code></pre>
 
 <h2>
-<a name="-4" class="anchor" href="#-4"><span class="octicon octicon-link"></span></a>ユーザ属性</h2>
+<a name="%E3%83%A6%E3%83%BC%E3%82%B6%E5%B1%9E%E6%80%A7" class="anchor" href="#%E3%83%A6%E3%83%BC%E3%82%B6%E5%B1%9E%E6%80%A7"><span class="octicon octicon-link"></span></a>ユーザ属性</h2>
 
 <p>ユーザ属性は <code>slash7.register()</code> で指定します。
 指定されたユーザ属性は、次のイベント送信時にサーバへ送付されます。
@@ -133,11 +162,41 @@ slash7.init("[YOUR TRACKING CODE]", {domain: "example.com"});
     userAgent: window.navigator.userAgent,
     platform: window.navigator.platform
 });
-slash7.track("page_load");
+slash7.track("action1");
 </code></pre>
 
 <h2>
-<a name="-5" class="anchor" href="#-5"><span class="octicon octicon-link"></span></a>リンククリックを追跡する際の注意点</h2>
+<a name="%E8%A4%87%E6%95%B0%E3%81%AE%E3%82%B5%E3%83%96%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E3%82%92%E3%83%88%E3%83%A9%E3%83%83%E3%82%AD%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B" class="anchor" href="#%E8%A4%87%E6%95%B0%E3%81%AE%E3%82%B5%E3%83%96%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E3%82%92%E3%83%88%E3%83%A9%E3%83%83%E3%82%AD%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B"><span class="octicon octicon-link"></span></a>複数のサブドメインをトラッキングする</h2>
+
+<p>サブドメインに対してトラッキングを行いたい場合は、<code>slash7.init()</code> の第二引数に <code>domain</code> を指定してください。</p>
+
+<pre><code>// www.example.com と test.example.com の両方をトラッキングしたい場合
+slash7.init("[YOUR TRACKING CODE]", {domain: "example.com"});
+</code></pre>
+
+<h2>
+<a name="%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AA%E3%83%B3%E3%82%B0%E8%A8%AD%E5%AE%9A" class="anchor" href="#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AA%E3%83%B3%E3%82%B0%E8%A8%AD%E5%AE%9A"><span class="octicon octicon-link"></span></a>サンプリング設定</h2>
+
+<p>ユーザベースのサンプリングを実施したい場合は、<code>slash7.init()</code> の第二引数に <code>samplingRate</code> を指定してください。
+<code>samplingRate</code> の値は 0 から 1 の間の数字を指定します。
+0を指定したときはどのユーザも記録しません（<code>track()</code>、<code>trackPageLoad()</code> 呼び出し時にイベントを送信しません）。
+1を指定したときは全ユーザを記録します。
+例えば 0.3 を指定したときは、全ユーザのおおよそ3割にあたるユーザを記録します。</p>
+
+<pre><code>// 3割のユーザを記録したい場合
+slash7.init("[YOUR TRACKING CODE]", {samplingRate: 0.3});
+</code></pre>
+
+<p><code>samplingRate</code> を指定しなかったときは全ユーザを記録します。</p>
+
+<p><code>domain</code> と <code>samplingRate</code> は同時に指定できます。</p>
+
+<pre><code>// domain と samplingRate を同時に指定する場合
+slash7.init("[YOUR TRACKING CODE]", {domain: "example.com", samplingRate: 0.3});
+</code></pre>
+
+<h2>
+<a name="%E3%83%AA%E3%83%B3%E3%82%AF%E3%82%AF%E3%83%AA%E3%83%83%E3%82%AF%E3%82%92%E8%BF%BD%E8%B7%A1%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AE%E6%B3%A8%E6%84%8F%E7%82%B9" class="anchor" href="#%E3%83%AA%E3%83%B3%E3%82%AF%E3%82%AF%E3%83%AA%E3%83%83%E3%82%AF%E3%82%92%E8%BF%BD%E8%B7%A1%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AE%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="octicon octicon-link"></span></a>リンククリックを追跡する際の注意点</h2>
 
 <p>リンククリックを <code>slash7.track()</code> で追跡しようとした場合、イベントが送信されないことがあります。一見良さそうな以下のコードを見てください(jQuery を利用している前提です)。</p>
 
@@ -166,7 +225,7 @@ $("#link").click(function() {
 </code></pre>
 
 <h3>
-<a name="-6" class="anchor" href="#-6"><span class="octicon octicon-link"></span></a>フォームの送信を追跡する</h3>
+<a name="%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%81%AE%E9%80%81%E4%BF%A1%E3%82%92%E8%BF%BD%E8%B7%A1%E3%81%99%E3%82%8B" class="anchor" href="#%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%81%AE%E9%80%81%E4%BF%A1%E3%82%92%E8%BF%BD%E8%B7%A1%E3%81%99%E3%82%8B"><span class="octicon octicon-link"></span></a>フォームの送信を追跡する</h3>
 
 <p>フォーム送信を追跡する場合にも同様にイベントが送信されないことがあります。
 以下のようにすることで問題を改善することができます。</p>
@@ -188,7 +247,7 @@ $("#form").submit(function(event) {
     </div>
     <footer>
       <div class="owner">
-      <p><a href="https://github.com/pLucky-Inc" class="avatar"><img src="https://secure.gravatar.com/avatar/cf0c63cf88700be224f2997ac09cf8ca?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" width="48" height="48"/></a> <a href="https://github.com/pLucky-Inc">pLucky-Inc</a> maintains <a href="https://github.com/pLucky-Inc/slash7-js">SLASH-7 JavaScript library</a></p>
+      <p><a href="https://github.com/pLucky-Inc" class="avatar"><img src="https://1.gravatar.com/avatar/cf0c63cf88700be224f2997ac09cf8ca?d=https%3A%2F%2Fidenticons.github.com%2F93ffe751d44f7a25abfa37f3089e61de.png&amp;r=x&amp;s=60" width="48" height="48"/></a> <a href="https://github.com/pLucky-Inc">pLucky-Inc</a> maintains <a href="https://github.com/pLucky-Inc/slash7-js">SLASH-7 JavaScript library</a></p>
 
 
       </div>
